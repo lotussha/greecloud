@@ -1,0 +1,17 @@
+{
+    "name": "hj/greecloud",
+    "authors": [
+        {
+            "name": "lotussha",
+            "email": "138610033@qq.com"
+        }
+    ],
+    "require": {
+        "hanson/foundation-sdk": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Greecloud\\": "src/"
+        }
+    }
+}
