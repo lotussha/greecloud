@@ -21,12 +21,11 @@ class Api extends AbstractAPI
 
     private $appSecret;
 
-    const URL = 'http://opentest.gree.com:8030/gateway';
-
-    public function __construct(string $appKey, string $appSecret)
+    public function __construct(string $appKey, string $appSecret, string $url)
     {
         $this->appKey    = $appKey;
         $this->appSecret = $appSecret;
+        $this->url       = $url;
     }
 
     public function request(string $method, array $array)
@@ -37,11 +36,11 @@ class Api extends AbstractAPI
             'paramsContent' => json_encode($array),
         ];
         $http     = $this->getHttp();
-        $response = $http->post(self::URL . $method, $params);
+        $response = $http->post($this->url . $method, $params);
 
         $result = json_decode(strval($response->getBody()), true);
 
-       // $this->checkErrorAndThrow($result);
+        $this->checkErrorAndThrow($result);
 
         return $result;
     }

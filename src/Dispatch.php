@@ -18,15 +18,17 @@ use Hanson\Foundation\Foundation;
 class Dispatch extends Foundation
 {
     private $gree;
+    private $conversion;
 
     public function __construct($config)
     {
         parent::__construct($config);
-        $this->gree = new Gree($config['appKey'], $config['appSecret']);
+        $this->gree = new Gree($config['appKey'], $config['appSecret'], $config['url']);
+        $this->conversion = new Conversion($config['appKey']);
     }
 
     public function __call($name, $arguments)
     {
-        return $this->gree->{$name}(...$arguments);
+        return $this->gree->{$name}(...($this->conversion->{$name}($arguments)));
     }
 }

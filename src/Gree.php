@@ -373,6 +373,12 @@ class Gree extends Api
         return $this->request('/api/v1/wangdianZz-selectWangdianZz', $params);
     }
 
+    //新增销售售后对应关系
+    public function wangdianhgx_add($params)
+    {
+        return $this->request('/api/v1/wangdianqhgx-add', $params);
+    }
+
 
     /* ---------------------------------------------网点------------------------------------------ */
 }
